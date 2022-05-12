@@ -1,13 +1,17 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import  MainRoutes from './routas';
-
+import  Routes from './routas';
+import { Container} from "@material-ui/core/";
+import  Header from './componets/Header';
+ 
 const App = () => {
     return (
-        <Router>
-            <MainRoutes/>
-        </Router>
-    )
-     
-}
+        <Container maxWidth="xl">
+            <Router>
+                <Header />
+                <Routes />
+            </Router>
+        </Container>
+    );
+};
 
 export default App;

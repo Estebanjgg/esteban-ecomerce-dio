@@ -1,11 +1,12 @@
 import React from "react";
 import { ListItem, ListItemText} from "@material-ui/core/";
-const Item = (props) => {
+
+const Item = ({name, details}) => {
     return (
         <ListItem>
             <ListItemText 
-            primary={props.ItemNAme}
-            secondary={props.ItemDetails}
+            primary={name}
+            secondary={details}
              />
         </ListItem>
     )

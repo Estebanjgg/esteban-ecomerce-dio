@@ -1,5 +1,6 @@
 import React from "react";
-import { Paper, Grid, Typography, Button, List, ListItem, ListItemText, makeStyles,} from "@material-ui/core/";
+import { Paper, Grid, Typography, Button, List, makeStyles,} from "@material-ui/core/";
+import Item from '../componets/Item'; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,15 +20,9 @@ const HomePage = () => {
                 <Paper className={classes.paper}>
                     <Typography variant="h5">Categorias</Typography>
                     <List>
-                        <ListItem>
-                            <ListItemText primary="Times nacionais" secondary="3" />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary="Times internacionais" secondary="3" />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary="Times históricos" secondary="3" />
-                        </ListItem>
+                          <Item/> 
+                          <Item/> 
+                          <Item/>                      
                     </List>
                 </Paper>
             </Grid>

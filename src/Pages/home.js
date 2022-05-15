@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Paper, Grid, Typography, List, makeStyles } from "@material-ui/core/";
 import Item from "../componets/Item";
 import Card from "../componets/Card";
@@ -14,19 +14,49 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
     },
 }));
-const HomePage = ({ products }) => {
-    console.log(products);
-
+const HomePage = () => {
+    const products = useSelector (state => state.products)
     const classes = useStyles();
+
+    const categorys = products.map((category) => {
+        const container = {};
+        container["id"] = category.id_categorys;
+        container["name"] = category.name_categorys;
+        return container;
+    })
+
+        const category = categorys.map(JSON.stringify)
+                    .filter(function(item, index, arr){
+                        return arr.indexOf(item, index + 1) === -1;
+                    })
+                    .map(JSON.parse)
+
+   const arrayCategory = categorys.map(category => category.name)
+        let count = {};
+
+        for(let i = 0; i < arrayCategory.length; i++){
+            {
+                let key = arrayCategory[i];
+                count[key] = (count[key] ? count[key] + 1 : 1)
+            }
+        }
+
     return (
         <Grid container spacing={3} className={classes.root}>
             <Grid item xs={3}>
                 <Paper className={classes.paper}>
                     <Typography variant="h5">Categorias</Typography>
                     <List>
-                        <Item name="Times Nacionais" details="3" />
-                        <Item name="Times Internacionais" details="4" />
-                        <Item name="Times Historicos" details="5" />
+                        {category.map(
+                            category => {
+                                return ( <Item 
+                                        key={category.id}
+                                        name={category.name} 
+                                        details={count[category.name]}
+                                     />
+                                 )
+                             }
+                        )}
                     </List>
                 </Paper>
             </Grid>
@@ -41,15 +71,13 @@ const HomePage = ({ products }) => {
                         >
                             {item.name_product}
                         </Card>
-                    )
+                    );
                 })}
             </Grid>
         </Grid>
-    )
-}
+    );
+};
 
-const mapStateToProps = (state) => ({
-    products: state.products,
-});
 
-export default connect(mapStateToProps)(HomePage);
+
+export default HomePage;

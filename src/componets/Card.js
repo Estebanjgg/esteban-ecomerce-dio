@@ -1,6 +1,7 @@
 import React from "react";
 import { Paper, Grid, Typography, Button, makeStyles } from "@material-ui/core/";
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
+import cartAction from './store/actions/cart'
  
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -10,13 +11,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Card = ({name, price,  image, children}) => {
     const cart = useSelector(state => state.cart.value ) 
+    const dispatch = useDispatch();
     const classes = useStyles();
-
-    let qtd = cart
-    const Add = () => {
-        qtd = qtd + 1
-        console.log(qtd)
-    }
 
     return (
         <Grid item xs={3}>
@@ -29,7 +25,7 @@ const Card = ({name, price,  image, children}) => {
                     </Grid>
                     <Button 
                     variant="contained"
-                    onClick={Add}
+                    onClick={()=>dispatch(cartAction.Add(cart))}
                     >
                         Adicionar
                         </Button>

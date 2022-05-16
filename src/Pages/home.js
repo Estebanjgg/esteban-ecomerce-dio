@@ -65,9 +65,7 @@ const HomePage = () => {
                     return (
                         <Card
                             key={item.id_product}
-                            name={item.name_product}
-                            price={item.price}
-                            image={item.image}
+                            product={item}
                         >
                             {item.name_product}
                         </Card>

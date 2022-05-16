@@ -1,11 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch} from "react-redux";
+import cartAction from '../store/actions/cart'
 
 const Cart = () => {
-        const cart = useSelector(state => state.cart)
-console.log(cart)
+    const cart = useSelector((state) => state.cart);
+    console.log(cart);
 
-    return(
+    return (
         <>
             <button
                 type="button"
@@ -16,9 +17,7 @@ console.log(cart)
                 <span>
                     <i className="fas fa-shopping-cart"></i>
                 </span>
-                <span className="badge rounded-pill bg-info text-dark">
-                    {cart.value}
-                </span>
+                <span className="badge rounded-pill bg-info text-dark">{cart.value}</span>
             </button>
 
             {/* Modal */}
@@ -59,42 +58,23 @@ console.log(cart)
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {cart.Cart.map( item => {
+                                        return (
+                                                <tr>
+                                             <th><button className="badge bg-danger"><i className="fas fa-window-close"></i></button></th> 
+                                                <th><img className="img-fluid img-thumbnail" src={item.image} alt={item.Name} width="50px"/></th>
+                                                <th><span className="badge badge-pill bg-warning">{item.quantity}</span></th>
+                                                <th>R$ {item.price.toFixed(2)} </th>
+                                               <th><button className="badge badge-pill bg-primary"><i className="fas fa-minus"></i></button></th>
+                                                  <th><button className="badge badge-pill bg-danger"><i className="fas fa-minus"></i></button></th> 
+                                                <th>R$ {(item.price * item.quantity).toFixed(2)}</th>
+                                                </tr>
+                                        )
+                                    })}
                                     <tr>
-                                        <th>
-                                            <button className="badge bg-danger">
-                                                <i className="fas fa-window-close"></i>
-                                            </button>
-                                        </th>
-                                        <th>
-                                            <img
-                                                className="img-fluid img-thumbnail"
-                                                src="./images/produtos/fla.jpg"
-                                                alt="Flamengo 2020"
-                                                width="50px"
-                                            />
-                                        </th>
-                                        <th>
-                                            <span className="badge badge-pill bg-warning">2</span>
-                                        </th>
-                                        <th>R$ 100.00</th>
-                                        <th>
-                                            <button className="badge badge-pill bg-primary">
-                                                <i className="fas fa-plus"></i>
-                                            </button>
-                                        </th>
-                                        <th>
-                                            <button className="badge badge-pill bg-danger">
-                                                <i className="fas fa-minus"></i>
-                                            </button>
-                                        </th>
-                                        <th>R$ 200.00</th>
-                                    </tr>
-                                    <tr>
-                                        <th colSpan="2" scope="col">
-                                            Total
-                                        </th>
-                                        <th colSpan="3">2 itens</th>
-                                        <th colSpan="2">R$ 200.00</th>
+                                        <th colSpan="2" scope="col">Total</th>
+                                        <th colSpan="3">{cart.value} itens</th>
+                                       { /* <th colSpan="2">R$ 200.00</th> */} 
                                     </tr>
                                 </tbody>
                             </table>

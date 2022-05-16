@@ -5,7 +5,7 @@ const Add = (cart, product) => {
         product
     }
 }
-
+const AddItem = {cart, product}
 export default {
     Add
 }

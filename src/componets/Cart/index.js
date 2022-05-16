@@ -74,7 +74,7 @@ const Cart = () => {
                                     <tr>
                                         <th colSpan="2" scope="col">Total</th>
                                         <th colSpan="3">{cart.value} itens</th>
-                                       { /* <th colSpan="2">R$ 200.00</th> */} 
+                                        <th colSpan="2">R$ 200.00</th>  
                                     </tr>
                                 </tbody>
                             </table>

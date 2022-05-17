@@ -22,7 +22,7 @@ const Card = ({product, children}) => {
                     <Grid item>
                         <img width="140px" src={product.image}alt={product.name_product}/>
                         <Typography variant="h6">{children}</Typography>
-                        <Typography variant="subtitle1">R${product.price}</Typography>
+                        <Typography variant="subtitle1">R${product.price.toFixed(2)}</Typography>
                     </Grid>
                     <Button 
                     variant="contained"
